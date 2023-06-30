@@ -1,0 +1,94 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Navigation from "../components/global/Navigation.astro";
+import PrivacyFrench from "../components/infopages/PrivacyFrench.astro";
+import PrivacyEnglish from "../components/infopages/PrivacyEnglish.astro";
+import Footer from "../components/global/Footer.astro";
+
+import { AstroSeo } from "@astrolib/seo";
+---
+
+<AstroSeo
+  title="Privacy - Delere - Clean your mailbox in a flash"
+  description="Delere is an application that provides you various automations to regain control over your inboxes."
+  openGraph={{
+    url: "https://www.delere.email",
+    title: "Delere - Clean your mailbox in a flash",
+    description:
+      "Delere is an application that provides you various automations to regain control over your inboxes.",
+    images: [
+      {
+        url: "https://uploads-ssl.webflow.com/63e27b65d675e82bf0dfd578/63eb93a80665605dd10916fe_delere_thumbnail.png",
+        width: 1200,
+        height: 630,
+        alt: "Delere - Clean your mailbox in a flash",
+        type: "image/jpeg",
+      },
+    ],
+    site_name: "Delere - Clean your mailbox in a flash",
+  }}
+/>
+<BaseLayout>
+  <Navigation />
+  <div
+    class="flex gap-8 mx-auto max-w-[40rem] mt-24 px-4 border-b border-black/5"
+  >
+    <button id="en" class="language-btn pb-2"> English</button>
+    <button id="fr" class="language-btn pb-2"> Français</button>
+  </div>
+  <div id="fr-content">
+    <PrivacyFrench />
+  </div>
+  <div id="en-content">
+    <PrivacyEnglish />
+  </div>
+  <Footer />
+</BaseLayout>
+
+<script>
+  let language = "en";
+
+  const getNavigatorLanguage = () => {
+    if (typeof navigator === "undefined") changeLanguage("en");
+    const language = navigator.language;
+
+    if (language.includes("fr")) changeLanguage("fr");
+    else changeLanguage("en");
+  };
+
+  const changeLanguage = (lang) => {
+    language = lang;
+    if (language === "en") {
+      document.getElementById("fr-content").style.display = "none";
+      document
+        .getElementById("fr")
+        .classList.remove("text-[#00AC9A]", "font-medium");
+
+      document.getElementById("en-content").style.display = "block";
+      document
+        .getElementById("en")
+        .classList.add("text-[#00AC9A]", "font-medium");
+    } else {
+      document.getElementById("fr-content").style.display = "block";
+      document
+        .getElementById("fr")
+        .classList.add("text-[#00AC9A]", "font-medium");
+
+      document.getElementById("en-content").style.display = "none";
+      document
+        .getElementById("en")
+        .classList.remove("text-[#00AC9A]", "font-medium");
+    }
+  };
+
+  const buttons = document.querySelectorAll("button.language-btn");
+
+  buttons.forEach((button) => {
+    button.addEventListener("click", (event) => {
+      // @ts-ignore
+      changeLanguage(event.target.id);
+    });
+  });
+
+  getNavigatorLanguage();
+</script>

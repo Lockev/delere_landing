@@ -1,0 +1,72 @@
+{
+  "name": "landing",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/landing",
+  "projectType": "application",
+  "targets": {
+    "typecheck": {
+      "executor": "nx:run-commands",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "cwd": "apps/landing",
+        "command": "astro check && tsc --noEmit"
+      }
+    },
+    "build": {
+      "executor": "nx:run-commands",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "cwd": "apps/landing",
+        "command": "astro build"
+      },
+      "dependsOn": [
+        {
+          "target": "typecheck",
+          "projects": "self"
+        }
+      ]
+    },
+    "dev": {
+      "executor": "nx:run-commands",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "cwd": "apps/landing",
+        "command": "astro dev"
+      }
+    },
+    "lint": {
+      "executor": "nx:run-commands",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "cwd": "apps/landing",
+        "command": "eslint --ext .ts,.astro ."
+      },
+      "dependsOn": [
+        {
+          "target": "format",
+          "projects": "self"
+        }
+      ]
+    },
+    "format": {
+      "executor": "nx:run-commands",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "command": "prettier --plugin-search-dir . ./apps/landing/**/*.{ts,astro} --check"
+      },
+      "dependsOn": [
+        {
+          "target": "stylelint",
+          "projects": "self"
+        }
+      ]
+    },
+    "stylelint": {
+      "executor": "nx-stylelint:lint",
+      "options": {
+        "lintFilePatterns": ["apps/landing/**/*.{css}"]
+      }
+    }
+  },
+  "tags": []
+}

@@ -1,0 +1,99 @@
+---
+---
+
+<section class="bg-white border-b border-black/5">
+  <div class="w-full mx-auto md:px-12 px-8 max-w-7xl lg:px-16">
+    <div
+      x-data="{ open: false }"
+      class="relative flex flex-col w-full py-5 mx-auto bg-white md:items-center md:justify-between md:flex-row md:px-6"
+    >
+      <div class="flex flex-row items-center justify-between lg:justify-start">
+        <a href="/" class="lg:pr-8 text-black inline-flex items-center gap-3">
+          <div
+            class="flex justify-center items-center w-10 h-10 shadow rounded-md"
+          >
+            <img src="/delere-logo-reduced.png" class="h-8" />
+          </div>
+          <span class="font-bold font-display">Delere</span>
+        </a>
+        <button
+          id="nav-toggle"
+          class="inline-flex items-center justify-center p-2 text-slate-400 hover:text-black focus:outline-none focus:text-black md:hidden"
+        >
+          <svg
+            class="w-6 h-6"
+            stroke="currentColor"
+            fill="none"
+            viewBox="0 0 24 24"
+          >
+            <path
+              id="menu"
+              class="inline-flex"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"></path>
+            <path
+              id="close"
+              class="hidden"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+      <nav
+        id="nav"
+        class="flex-col items-center flex-grow hidden md:pb-0 md:flex md:justify-end md:flex-row"
+      >
+        <a
+          class="px-2 lg:px-6 py-2 md:px-3 text-sm font-medium text-black hover:text-accent-400 lg:ml-auto"
+          href="/#features">Features</a
+        >
+
+        <a
+          class="px-2 lg:px-6 py-2 md:px-3 text-sm font-medium text-black hover:text-accent-400"
+          href="/#testimonials">Testimonials</a
+        >
+
+        <a
+          class="px-2 lg:px-6 py-2 md:px-3 text-sm font-medium text-black hover:text-accent-400"
+          href="/#pricing">Pricing</a
+        >
+
+        <div class="inline-flex items-center gap-2 list-none lg:ml-auto">
+          <a
+            href="https://app.delere.email/"
+            target="_blank"
+            class="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-black bg-slate-100 rounded-lg group focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 hover:bg-slate-50 active:bg-slate-200 active:text-accent-400 focus-visible:outline-black"
+          >
+            Go to app
+          </a>
+        </div>
+      </nav>
+    </div>
+  </div>
+  <script>
+    let open = false;
+    const navToggle = document.getElementById("nav-toggle");
+    navToggle.addEventListener("click", () => {
+      open = !open;
+      if (open) {
+        document.getElementById("menu").classList.add("hidden");
+        document.getElementById("menu").classList.remove("inline-flex");
+        document.getElementById("close").classList.remove("hidden");
+        document.getElementById("close").classList.add("inline-flex");
+        document.getElementById("nav").classList.remove("hidden");
+        document.getElementById("nav").classList.add("flex");
+      } else {
+        document.getElementById("menu").classList.remove("hidden");
+        document.getElementById("menu").classList.add("inline-flex");
+        document.getElementById("close").classList.add("hidden");
+        document.getElementById("close").classList.remove("inline-flex");
+        document.getElementById("nav").classList.add("hidden");
+        document.getElementById("nav").classList.remove("flex");
+      }
+    });
+  </script>
+</section>

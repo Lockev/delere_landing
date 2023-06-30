@@ -1,0 +1,46 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Navigation from "../components/global/Navigation.astro";
+
+import Hero from "../components/landing/Hero.astro";
+import SectionOne from "../components/landing/SectionOne.astro";
+import SectionTwo from "../components/landing/SectionTwo.astro";
+import Testimonial from "../components/global/Testimonial.astro";
+import Pricing from "../components/landing/Pricing.astro";
+// import Cta from '../components/global/Cta.astro'
+import Footer from "../components/global/Footer.astro";
+import { AstroSeo } from "@astrolib/seo";
+---
+
+<AstroSeo
+  title="Delere - Clean your mailbox in a flash"
+  description="Delere is an application that provides you various automations to regain control over your inboxes."
+  openGraph={{
+    url: "https://www.delere.email",
+    title: "Delere - Clean your mailbox in a flash",
+    description:
+      "Delere is an application that provides you various automations to regain control over your inboxes.",
+    images: [
+      {
+        url: "https://uploads-ssl.webflow.com/63e27b65d675e82bf0dfd578/63eb93a80665605dd10916fe_delere_thumbnail.png",
+        width: 1200,
+        height: 630,
+        alt: "Delere - Clean your mailbox in a flash",
+        type: "image/jpeg",
+      },
+    ],
+    site_name: "Delere - Clean your mailbox in a flash",
+  }}
+/>
+<BaseLayout>
+  <Navigation />
+  <Hero />
+
+  <SectionTwo />
+  <SectionOne />
+
+  <Testimonial />
+  <Pricing />
+  <!-- <Cta /> -->
+  <Footer />
+</BaseLayout>
